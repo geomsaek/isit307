@@ -1,0 +1,36 @@
+header #logo {
+  padding: 0;
+  text-align: center;
+}
+header #logo img {
+  width: 30%;
+  display: block;
+  margin: auto;
+}
+header .container-fluid.banner {
+  padding: 0;
+  float: left;
+  width: 100%;
+  margin: 0;
+}
+header #myCarousel {
+  width: 100%;
+  float: left;
+  margin: 2% 0 3% 0;
+}
+header #myCarousel img {
+  width: 100%;
+  display: block;
+}
+section .container.form-container {
+  padding: 0 0 3% 0;
+}
+section .container.form-container .col-sm-12 {
+  padding-bottom: 2%;
+}
+section .container.form-container .col-sm-12.button {
+  padding-top: 2%;
+}
+section #error-container h3 {
+  color: red;
+}
