@@ -12,7 +12,7 @@
             var message = "";
 
             jQuery('#mort-calc-form').submit(function(){
-                if(isNaN(jQuery('#amount').val())){
+                if(isNaN(jQuery('#amount').val()) || jQuery('#amount').val() <= 0){
                     if(message.length == 0){
                         message = "Please enter a valid";
                     }
@@ -22,7 +22,7 @@
                    return false;
                 }
 
-                if(isNaN(jQuery('#rate').val())){
+                if(isNaN(jQuery('#rate').val()) || jQuery('#rate').val() <= 0){
                     if(message.length == 0){
                         message = "Please enter a valid";
                     }
@@ -32,7 +32,7 @@
                     return false;
                 }
 
-                if(isNaN(jQuery('#years').val())){
+                if(isNaN(jQuery('#years').val()) || jQuery('#years').val() <= 0){
                     if(message.length == 0){
                         message = "Please enter a valid";
                     }
@@ -143,13 +143,21 @@
             $error = "";
 
             if(preg_match('/[^\d|^\.]+/',$amount, $matches,PREG_OFFSET_CAPTURE) != 0){
-                $error = "Please enter a correct number";
+                    $error = "Please enter a correct number";
             }
             if(preg_match('/[^\d|^\.]+/',$rate, $matches,PREG_OFFSET_CAPTURE) != 0){
-                $error = "Please enter a correct number";
+                if($amount <= 0) {
+                    $error = "Please enter a correct number";
+                }
             }
             if(preg_match('/[^\d|^\.]+/',$year, $matches,PREG_OFFSET_CAPTURE) != 0){
-                $error = "Please enter a correct number";
+                if($amount <= 0) {
+                    $error = "Please enter a correct number";
+                }
+            }
+
+            if($amount <= 0 || $rate <= 0 || $year <= 0){
+                $error = "Please enter a positive number";
             }
 
             if(empty($error)):
