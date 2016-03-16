@@ -140,6 +140,7 @@
             $amount = trim($_POST['mort-amount']);
             $rate = trim($_POST['interest-rate']);
             $year = trim($_POST['mortgage-years']);
+
             $error = "";
 
             if(preg_match('/[^\d|^\.]+/',$amount, $matches,PREG_OFFSET_CAPTURE) != 0){
@@ -161,20 +162,19 @@
             }
 
             if(empty($error)):
-                $loan = $amount;
-                $irate = $rate / 12;
-                $payNum = $year * 12;
 
-                $monthPay = $loan * $irate;
-                $monthDiv = (1+$irate)^$payNum;
-                $temp = 1 / $monthDiv;
-                $finalDiv = $monthPay / (1-$temp);
+                $monthlyInterest = $rate / 100;
+                $monthlyInterest /= 12;
+                $totalPayments = $year * 12;
+                $divident = pow ((1 + $monthlyInterest), -$totalPayments);
+                $j = $monthlyInterest / (1- $divident);
+                $finalDiv = $j * $amount;
 
                 ?>
                 <div class="container-fluid">
                     <div class="container">
                         <div class="col-sm-12">
-                            <h3>Monthly Repayment value is: $<?php echo $finalDiv; ?></h3>
+                            <h3>Monthly Repayment value is: $<?php echo round($finalDiv,2); ?></h3>
                         </div>
 
                     </div>
