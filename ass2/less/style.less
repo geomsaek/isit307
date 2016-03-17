@@ -8,11 +8,20 @@ section {
 
   }
 
+  .car-image-wrap {
+    padding:0;
+
+    img { display:block; width:100%; }
+  }
+
+  .car-content-wrap { padding:0 0 0 6%; }
+
   .container.result-wrap {
     margin-bottom:4%; border-bottom:1px solid #efefef; padding-bottom:3%;
     button { float:right; }
   }
   .container.result-wrap:first-child { margin-top:3%; }
+  .container.result-wrap { padding-left:0; padding-right:0; }
 }
 
 form {
@@ -20,4 +29,15 @@ form {
     margin-bottom:2%;
   }
   .container-fluid.form-row:first-child { margin-top:2%; }
+}
+
+.container-fluid.home-wrap {
+
+  .col-sm-12 {
+    .container-fluid.instruction { padding-top:15px;padding-bottom:15px; padding-left:0; padding-right:0; }
+  }
+  form {
+    .container-fluid { padding-left:0; padding-right:0; }
+  }
+
 }

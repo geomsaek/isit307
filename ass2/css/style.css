@@ -1,6 +1,16 @@
 section form .container-fluid {
   margin-bottom: 2%;
 }
+section .car-image-wrap {
+  padding: 0;
+}
+section .car-image-wrap img {
+  display: block;
+  width: 100%;
+}
+section .car-content-wrap {
+  padding: 0 0 0 6%;
+}
 section .container.result-wrap {
   margin-bottom: 4%;
   border-bottom: 1px solid #efefef;
@@ -12,9 +22,23 @@ section .container.result-wrap button {
 section .container.result-wrap:first-child {
   margin-top: 3%;
 }
+section .container.result-wrap {
+  padding-left: 0;
+  padding-right: 0;
+}
 form .container-fluid.form-row {
   margin-bottom: 2%;
 }
 form .container-fluid.form-row:first-child {
   margin-top: 2%;
+}
+.container-fluid.home-wrap .col-sm-12 .container-fluid.instruction {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.container-fluid.home-wrap form .container-fluid {
+  padding-left: 0;
+  padding-right: 0;
 }

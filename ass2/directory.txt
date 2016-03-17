@@ -1,2 +1,7 @@
-John:Smith:4343434km:$90000:422239982:NKX2223:3:oil change,tune up, rejig:Ford Laser:2010
-Jane:Smith:999999km:$60000:40415558934:AUX382:4:N/A:Holden Commodore:2003
+John:Smith:4343434km:$90000:422239982:NKX2223:3:oil change,tune up, rejig:Ford Laser:2010:laser-img.jpg
+Jane:Smith:999999km:$60000:40415558934:AUX382:4:N/A:Holden Commodore:2003:commodore-img.jpg
+Peter:Jacobs:180000km:$20000:42292032:TUH222:1:10 000km service:Mazda 3:2010:mazda-img.jpg
+Paul:Simmons:10000km:$15000:9832333:TY34UX:1:N/A:Hyundai Getz:2005:hyundai-img.jpg
+Jessica:Jones:50000km:$100000:6844498:SKU122:1:Yearly Service:BMW i8:2010:bmw-img.jpg
+Mary:Michaels:20000km:$5000:0412 334 033:IAW232:10:None Recorded:Kia People Mover:2001:kia-img.jpg
+James:Jameson:10000km:$90000:0432 999 221:NKW 392:11:Monthly Service at Registered Mercedes Dealer:Mercedes eClass:2008:mercedes-img.jpg
