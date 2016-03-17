@@ -85,13 +85,10 @@
     }
 
     function check_record($details, $userSearch){
-
-        $displayResult = false;
-        $percent;
-
+        
         $licenseRes;
         $userRes;
-
+        $serviceRes;
 
         $licenseRes = license_check($userSearch[0], $details[5]);
         $userRes = check_users($userSearch[1], $details[6]);
