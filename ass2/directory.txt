@@ -5,3 +5,5 @@ Paul:Simmons:10000km:$15000:9832333:TY34UX:1:N/A:Hyundai Getz:2005:hyundai-img.j
 Jessica:Jones:50000km:$100000:6844498:SKU122:1:Yearly Service:BMW i8:2010:bmw-img.jpg
 Mary:Michaels:20000km:$5000:0412 334 033:IAW232:10:None Recorded:Kia People Mover:2001:kia-img.jpg
 James:Jameson:10000km:$90000:0432 999 221:NKW 392:11:Monthly Service at Registered Mercedes Dealer:Mercedes eClass:2008:mercedes-img.jpg
+Ian:Summers:12000:9090888:0415589390:JSHH22323:1:Checkup:Ford Falcon:2001:falcon-img.jpg
+Adam:Murray:10000:65000:0412 333 999:HGT 323 HHJ:1:Yearly Full Service:Toyota Camry:2008:toyota-img.jpg

@@ -6,29 +6,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="http://isit.local/ass2/js/lib.js"></script>
     <?php require_once('search.php'); ?>
 </head>
 
 <body>
 
-    <header>
-        <?php if(isset($_GET['enquiry'])): ?>
-            <?php if($_GET['enquiry']): ?>
-                <div class="container-fluid">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h2>Thanks! Your enquiry has been submitted!</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endif; ?>
-        <?php endif; ?>
-
-    </header>
-
     <?php
+
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $path .= '/ass2/inc/nav.php';
+    include_once($path);
+
 
     if(isset($_POST['submit-search'])):
 
@@ -140,7 +129,16 @@
 
                                     <div class="container-fluid">
                                         <label>Owner Count</label>
-                                        <input type="text" class="form-control" id="owner-count" name="search-owners" />
+
+                                        <select name="search-owners" class="form-control" id="owner-count">
+                                            <?php for($i = 0; $i < 13; $i++): ?>
+                                                <?php if($i == 0): ?>
+                                                    <option value="">0</option>
+                                                <?php else: ?>
+                                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                                <?php endif; ?>
+                                            <?php endfor; ?>
+                                        </select>
                                     </div>
 
                                     <div class="container-fluid">
@@ -169,14 +167,34 @@
                 </div>
 
             </section>
-    <?php endif; ?>
+    <?php endif;
+
+        $path = $_SERVER['DOCUMENT_ROOT'];
+        $path .= '/ass2/inc/footer.php';
+        include_once($path);
+    ?>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
 
 
-    <footer>
+            var exp = new RegExp(/[^a-zA-Z\,\s0-9]+$/);
+            var licenseexp = new RegExp(/[^a-zA-Z0-9]+$/);
+            var priceexp = new RegExp(/[^0-9\s\$]+$/);
+            var phoneexp = new RegExp(/[^0-9\+\s]+$/);
+            keyfunc('#service-list',exp);
+            keyfunc('#licence-num',licenseexp);
 
+            jQuery('#licence-num').blur(function(){
+                jQuery(this).val(jQuery(this).val().replace(/ /g,''));
+            });
 
+            keyfunc('#express-name',exp);
+            keyfunc('#express-licence-num',licenseexp);
+            keyfunc('#express-price',priceexp);
+            keyfunc('#express-contact',phoneexp);
+        });
 
-    </footer>
-
+    </script>
 </body>
 </html>

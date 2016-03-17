@@ -85,7 +85,7 @@
     }
 
     function check_record($details, $userSearch){
-        
+
         $licenseRes;
         $userRes;
         $serviceRes;
