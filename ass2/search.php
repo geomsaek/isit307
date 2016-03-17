@@ -92,30 +92,15 @@
         $licenseRes;
         $userRes;
 
-        if(all_fields($userSearch)){
-            if($userSearch[0] == $details[5] && $userSearch[1] == $details[6]){
-                similar_text($userSearch[2],$details[7], $percent);
-                if($percent > 50){
-                    return true;
-                }else {
-                    return false;
-                }
-            }else {
-                return false;
-            }
 
+        $licenseRes = license_check($userSearch[0], $details[5]);
+        $userRes = check_users($userSearch[1], $details[6]);
+        $serviceRes = compare_service($userSearch[2], $details[7]);
+
+        if($licenseRes && $userRes && $serviceRes){
+            return true;
         }else {
-
-            $licenseRes = license_check($userSearch[0], $details[5]);
-            $userRes = check_users($userSearch[1], $details[6]);
-            $serviceRes = compare_service($userSearch[2], $details[7]);
-
-            if($licenseRes && $userRes && $serviceRes){
-                return true;
-            }else {
-                return false;
-            }
-
+            return false;
         }
 
     }
