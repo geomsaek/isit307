@@ -106,10 +106,6 @@
 
         }else {
 
-            if(empty($userSearch[0]) && empty($userSearch[1]) && empty($userSearch[2])){
-                return true;
-            }
-
             $licenseRes = license_check($userSearch[0], $details[5]);
             $userRes = check_users($userSearch[1], $details[6]);
             $serviceRes = compare_service($userSearch[2], $details[7]);
