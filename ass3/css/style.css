@@ -1,0 +1,13 @@
+body .spacer {
+  padding-bottom: 15px;
+}
+body .result-wrap {
+  padding-left: 0;
+  padding-right: 0;
+}
+body #array-range,
+body #array-key-wrap,
+body #array-search,
+body #slice-range {
+  display: none;
+}
