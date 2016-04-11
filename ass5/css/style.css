@@ -1,0 +1,21 @@
+body header #logout-button {
+  float: right;
+}
+body header #logout-button a {
+  color: white;
+}
+body .col-sm-6#login-square {
+  float: none;
+  margin: auto;
+  padding: 0;
+}
+body .col-sm-6#login-square h1 {
+  padding-bottom: 2%;
+}
+body .col-sm-6#login-square form .container-fluid {
+  padding: 0;
+  margin: 0 0 3% 0;
+}
+body form .hide {
+  display: none;
+}
