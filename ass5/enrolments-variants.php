@@ -45,7 +45,7 @@
                     }
                 endif;
             ?>
-            <form action="scripts/enrol.php" method="POST">
+            <form action="scripts/Enrolment.php" method="POST">
 
                 <div class="container">
                     <div class="row">
