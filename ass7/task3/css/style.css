@@ -10,6 +10,10 @@ body table td {
 body table th {
   padding: 5px;
 }
+body #list p:hover {
+  background: #efefef;
+  cursor: pointer;
+}
 body .content {
   display: block;
 }
