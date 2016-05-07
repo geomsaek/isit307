@@ -1,0 +1,23 @@
+body.loading {
+  background: url(../images/loading.gif) center center no-repeat;
+}
+body.loading .content {
+  display: none;
+}
+body table td {
+  padding: 5px;
+}
+body table th {
+  padding: 5px;
+}
+body .content {
+  display: block;
+}
+body .bar-wrap {
+  margin-bottom: 5px;
+}
+body .bar {
+  background: blue;
+  color: black;
+  padding: 11px;
+}
