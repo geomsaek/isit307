@@ -54,27 +54,6 @@
     </div>
 </div>
 
-<script>
-    jQuery(document).ready(function(){
-
-        jQuery('.action-box-check').each(function(){
-            jQuery(this).change(function(){
-                var id = jQuery(this).parent().parent().find('.book-id-field').val()
-                if(jQuery(this).is(':checked')){
-
-                    var field = '<input name="bookitems[]" type="text" class="item" id="' + id + '" value="' + id + '" />';
-                    jQuery('#book-select').append(field);
-                }else {
-                    jQuery('#book-select').find('#' + id).remove();
-
-                }
-            })
-
-        });
-
-    });
-
-</script>
 </body>
 
 </html>

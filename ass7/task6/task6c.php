@@ -41,7 +41,7 @@
 
                     while(true) {
 
-                          if($info > $current->info) {
+                          if($info >= $current->info) {
                          
                                 if($current->left) {
                                    $current = $current->left;
@@ -50,7 +50,7 @@
                                    break; 
                                 }
 
-                          } else if($info < $current->info){
+                          } else if($info <= $current->info){
 
                                 if($current->right) {
                                    $current = $current->right;
@@ -67,17 +67,9 @@
                  }
           }
 
-          public function traverse($method) {
+          public function traverse() {
 
-                 switch($method) {
-
-                     case 'inorder':
-                     $this->_inorder($this->root);
-                     break;
-
-                     default:
-                     break;
-                 } 
+				$this->_inorder($this->root);
 
           } 
 
@@ -107,7 +99,7 @@
 
 	print_r($arrOne);
 	echo "<br />";
-	$tree->traverse('inorder');
+	$tree->traverse();
 	
 	
 	echo"<h1>Array Two</h1>"; 
@@ -120,7 +112,7 @@
 
 	print_r($arrOne);
 	echo "<br />";
-	$tree->traverse('inorder');
+	$tree->traverse();
 	
 	echo"<h1>Array Three</h1>"; 
 	$arrOne = array(23,14,345,465,46,456,457,23,124234,758,32234,123,123,11,31,5,0);
@@ -132,7 +124,7 @@
 
 	print_r($arrOne);
 	echo "<br />";
-	$tree->traverse('inorder');
+	$tree->traverse();
 
   
 ?>

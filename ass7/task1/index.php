@@ -1,109 +1,131 @@
+<html>
 <?php
-session_start();
-require_once("dbcontroller.php");
-$db_handle = new DBController();
-if(!empty($_GET["action"])) {
-switch($_GET["action"]) {
-	case "add":
-		if(!empty($_POST["quantity"])) {
-			$productByCode = $db_handle->runQuery("SELECT * FROM tblproduct WHERE code='" . $_GET["code"] . "'");
-			$itemArray = array($productByCode[0]["code"]=>array('name'=>$productByCode[0]["name"], 'code'=>$productByCode[0]["code"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode[0]["price"]));
-			
-			if(!empty($_SESSION["cart_item"])) {
-				if(in_array($productByCode[0]["code"],$_SESSION["cart_item"])) {
-					foreach($_SESSION["cart_item"] as $k => $v) {
-							if($productByCode[0]["code"] == $k)
-								$_SESSION["cart_item"][$k]["quantity"] = $_POST["quantity"];
-					}
-				} else {
-					$_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
-				}
-			} else {
-				$_SESSION["cart_item"] = $itemArray;
-			}
-		}
-	break;
-	case "remove":
-		if(!empty($_SESSION["cart_item"])) {
-			foreach($_SESSION["cart_item"] as $k => $v) {
-					if($_GET["code"] == $k)
-						unset($_SESSION["cart_item"][$k]);				
-					if(empty($_SESSION["cart_item"]))
-						unset($_SESSION["cart_item"]);
-			}
-		}
-	break;
-	case "empty":
-		unset($_SESSION["cart_item"]);
-	break;	
-}
+
+require_once('util/Db_Handler.php');
+$dbHandler = new DbHandler();
+$title = "Home";
+$page = "index";
+require_once('include/header.php');
+require_once('include/navbar.php');
+require_once('classes/Category.php');
+require_once('classes/LineItem.php');
+require_once('classes/StockedItem.php');
+
+
+$categoryArr = $dbHandler->executeQuery("Select * from category");
+$categories = array();
+foreach ($categoryArr as $categoryRow) {
+    $category = new Category();
+    $category->init($categoryRow);
+    $categories[] = $category;
 }
 ?>
-<HTML>
-<HEAD>
-<TITLE>Simple PHP Shopping Cart</TITLE>
-<link href="style.css" type="text/css" rel="stylesheet" />
-</HEAD>
-<BODY>
-<div id="shopping-cart">
-<div class="txt-heading">Shopping Cart <a id="btnEmpty" href="index.php?action=empty">Empty Cart</a></div>
-<?php
-if(isset($_SESSION["cart_item"])){
-    $item_total = 0;
-?>	
-<table cellpadding="10" cellspacing="1">
-<tbody>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Code</strong></th>
-<th><strong>Quantity</strong></th>
-<th><strong>Price</strong></th>
-<th><strong>Action</strong></th>
-</tr>	
-<?php		
-    foreach ($_SESSION["cart_item"] as $item){
-		?>
-				<tr>
-				<td><strong><?php echo $item["name"]; ?></strong></td>
-				<td><?php echo $item["code"]; ?></td>
-				<td><?php echo $item["quantity"]; ?></td>
-				<td align=right><?php echo "$".$item["price"]; ?></td>
-				<td><a href="index.php?action=remove&code=<?php echo $item["code"]; ?>" class="btnRemoveAction">Remove Item</a></td>
-				</tr>
-				<?php
-        $item_total += ($item["price"]*$item["quantity"]);
-		}
-		?>
+<body ng-app="myApp">
 
-<tr>
-<td colspan="5" align=right><strong>Total:</strong> <?php echo "$".$item_total; ?></td>
-</tr>
-</tbody>
-</table>		
-  <?php
-}
-?>
+<div class="container">
+    <div class="page-header">
+        <h3>Shopping Catalogue</h3>
+    </div>
+
+    <div class="form-group">
+        <label for="category">Select category:</label>
+        <select class="form-control" id="category">
+            <?php foreach ($categories as $category): ?>
+                <option value="<?php echo $category->getCategoryNumber() ?>">
+                    <?php echo $category->getTitle(); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
+
+    </div>
+    <div class="items" ng-controller="myController">
+        <div class="wrapper col-sm-12" ng-repeat="item in items">
+            <div class="item panel panel-default">
+                <div class="col-xs-4">
+                    <img class="thumbnail display-image" src="images/{{item.img}}"/>
+                </div>
+                <div class='col-xs-7'>
+                    <h5 class="pull-left">{{item.title}}</h5>
+					<h6 class="text-danger">${{item.price}}</h6>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <button type="button" class="btn btn-primary add-to-cart-btn" ng-click="addToCart(item.item_number)"
+                        ng-disabled="isInCart(item.item_number)">
+                    Add to cart
+                </button>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
 </div>
 
-<div id="product-grid">
-	<div class="txt-heading">Products</div>
-	<?php
-	$product_array = $db_handle->runQuery("SELECT * FROM tblproduct ORDER BY id ASC");
-	if (!empty($product_array)) { 
-		foreach($product_array as $key=>$value){
-	?>
-		<div class="product-item">
-			<form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>">
-			<div class="product-image"><img src="<?php echo $product_array[$key]["image"]; ?>"></div>
-			<div><strong><?php echo $product_array[$key]["name"]; ?></strong></div>
-			<div class="product-price"><?php echo "$".$product_array[$key]["price"]; ?></div>
-			<div><input type="text" name="quantity" value="1" size="2" /><input type="submit" value="Add to cart" class="btnAddAction" /></div>
-			</form>
-		</div>
-	<?php
-			}
-	}
-	?>
-</div>
-</BODY>
-</HTML>
+
+</body>
+
+<script type="text/javascript">
+
+    <?php
+    session_start();
+    $item_lists = array();
+    if (isset($_SESSION['cart'])) {
+        foreach ($_SESSION['cart'] as $item) {
+            $item_lists[] = $item->getStockedItem()->getItemNumber();
+        }
+    }
+
+    ?>
+    var app = angular.module("myApp", []);
+    app.controller("myController", function ($scope, $http) {
+
+        var items = "<?php echo implode(",", $item_lists);?>";
+        $scope.itemList = items.split(",");
+        console.log($scope.itemList);
+        $scope.addToCart = function (item_number) {
+            var data = $.param({
+                "item_number": item_number
+            });
+
+            var config = {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            }
+            $http.post('background/cart.php', data, config)
+                .success(function (data, status, headers, config) {
+                    var result = angular.fromJson(data);
+                    if (result.code == 1) {
+                        alert("Item added");
+                    }
+                    else {
+                        alert("Item is already in your cart")
+                    }
+                    $scope.itemList.push(item_number + "");
+
+                });
+
+        };
+
+        $scope.isInCart = function (item_number) {
+            return ($scope.itemList.indexOf(item_number + "") !== -1);
+        }
+        getItems();
+        $("#category").on("change", function () {
+            getItems();
+        });
+
+        function getItems() {
+            $http.get("background/items.php?category_number=" + $("#category").val()).success(function (result) {
+                    $scope.items = result;
+                }
+            );
+        }
+    });
+
+</script>
+</html>

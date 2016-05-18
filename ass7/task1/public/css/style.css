@@ -1,0 +1,64 @@
+/*style brand image*/
+.navbar-brand h3 {
+    margin-top: -5px;
+    color:white;
+}
+
+.navbar-header a { margin:0; color:white; text-decoration:none; min-width:150px;text-align:left; }
+.navbar-header h3 { margin-top:11px; }
+.navbar-header .navbar-brand { display:none; }
+.navbar-inverse { border-radius:0; -moz-border-radius:0; border:none; }
+h6.text-danger { width:100%; display:block; }
+.wrapper .item h5 { width:100%; display:block; }
+
+.page-header
+{
+    color: red;
+}
+
+.items
+{
+    margin-top: 50px;
+}
+
+.wrapper
+{
+    padding: 4px;
+}
+.item
+{
+    padding: 4px;
+    position: relative;
+
+
+}
+
+.display-image{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display:block;
+    height:auto;
+    width:100%;
+}
+
+.table-image{
+    margin: 0px !important;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display:block;
+    height:130px;
+    width:180px;
+}
+
+
+.add-to-cart-btn
+{
+    position: absolute;
+    right: 27px;
+    bottom: 19px;
+}
+
+.margin-wrapper
+{
+    margin: 20px 0;
+}

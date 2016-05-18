@@ -49,7 +49,6 @@
                     jQuery('.update').each(function(){
 
                         jQuery(this).click(function(){
-                            alert(jQuery(this).eq());
                             var val = jQuery(this).text();
                             jQuery('#product-name').val(val);
                             jQuery('#list').children().remove();

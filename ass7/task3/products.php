@@ -31,7 +31,7 @@ require_once('scripts/db.php');
 
     <div class="container-fluid">
         <div class="container">
-            <div class="row">
+            <div class="row" style='overflow-y:scroll;'>
 
                 <?php
                     for($i = 0; $i < sizeof($prods); $i++){

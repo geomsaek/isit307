@@ -29,7 +29,7 @@
         <?php
             for($i = 0; $i < $books; $i++){
 
-                if($xmlFile->book[$i]->price >= $priceFrom && $xmlFile->book[$i] <= $priceTo){
+                if($xmlFile->book[$i]->price >= $priceFrom && $xmlFile->book[$i]->price <= $priceTo){
                     echo "<tr>";
                         echo "<td>" . $xmlFile->book[$i]->title . "</td>";
                         echo "<td>" . $xmlFile->book[$i]->year . "</td>";

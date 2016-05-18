@@ -1,9 +1,7 @@
 <!doctype>
 <html>
 <head>
-    <?php session_start(); ?>
 
-    <?php if(isset($_SESSION['username'])){ header("Location: http://isit.local/ass7/task4/profile.php"); } ?>
     <title>Welcome</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <!-- Latest compiled and minified CSS -->

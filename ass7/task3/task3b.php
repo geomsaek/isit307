@@ -72,16 +72,29 @@
 
     <div class="container-fluid content">
         <div class="container">
-            <p>
+            <p id='pages'>
             <?php
                 for($p = 0; $p < sizeof($chunk); $p++){
-                    echo "<a href='http://isit.local/ass7/task3/task3b.php/?page=" . ($p + 1) . "'>" . ($p + 1) . "</a>";
+                	if(isset($_GET['page'])){
+                		if($p == $_GET['page'] - 1){
+		                    echo "<a style='font-weight:bold;' href='http://isit.local/ass7/task3/task3b.php/?page=" . ($p + 1) . "'>" . ($p + 1) . "</a>";
+		                }else {
+		                    echo "<a href='http://isit.local/ass7/task3/task3b.php/?page=" . ($p + 1) . "'>" . ($p + 1) . "</a>";		                
+		                }
+                	}else {
+	                    echo "<a href='http://isit.local/ass7/task3/task3b.php/?page=" . ($p + 1) . "'>" . ($p + 1) . "</a>";
+	                }
                 }
             ?>
             </p>
         </div>
     </div>
-
+	<style>
+		p#pages { display:block; width:100%; margin-top:10px; }
+		p#pages a {
+			padding-right:15px;
+		}
+	</style>
     <script>
         jQuery(window).ready(function(){
             setTimeout(hideLoad, 2000);

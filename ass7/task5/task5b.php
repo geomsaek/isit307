@@ -25,10 +25,12 @@
                 $message = "Dear " . $row['fname'] . "," . "<br />Your debt of $" . $row['debt'] . " is now overdue by " . $pos . " days.<br />To avoid any addition fees, please pay as soon as possible. <br />";
                 $message = $message . "<br /> Kind regards<br /> Date Recovery Team";
 
-                $headers = 'From: admin@debts.com' . "\r\n" .
+				$headers  = 'MIME-Version: 1.0' . "\r\n";
+				$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                $headers .= 'From: admin@debts.com' . "\r\n" .
                     'Reply-To: admin@debts.com' . "\r\n";
 
-                $mail($to, $subject, $message, $headers);
+                mail($to, $subject, $message, $headers);
 
             }
         }
